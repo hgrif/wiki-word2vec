@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-USAGE: %(program)s TEXT_INPUT WORD2VEC_OUTPUT
+USAGE: %(program)s TEXT_INPUT WORD2VEC_OUTPUT TEXT_OUTPUT
 
 Example script for training a word2vec model. Parameters for word2vec should be
-optimized per language.
+optimized per language. TEXT_OUTPUT, true of false, if vectors should be outputted to a text file.
 """
 
 import logging
@@ -25,10 +25,11 @@ if __name__ == '__main__':
     logger.info("Running %s" % ' '.join(sys.argv))
 
     # Check and process input arguments.
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         print globals()['__doc__'] % locals()
         sys.exit(1)
-    inp, outp = sys.argv[1:3]
+
+    inp, outp, veco = sys.argv[1:4]
 
     max_length = 0
     with open(inp, 'r') as f:
@@ -47,3 +48,6 @@ if __name__ == '__main__':
     word2vec = Word2Vec(LineSentence(inp, max_sentence_length=max_length),
                         **params)
     word2vec.save(outp)
+    
+    if veco:
+        word2vec.save_word2vec_format(outp + '.model.txt', binary=False)

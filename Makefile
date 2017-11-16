@@ -1,5 +1,5 @@
 LANGUAGE := yo
-DATADIR := data/$(LANGUAGE)/
+DATADIR := ./data/$(LANGUAGE)/
 
 XMLNAME := $(LANGUAGE)wiki-latest-pages-articles.xml.bz2
 WIKIURL := https://dumps.wikimedia.org/$(LANGUAGE)wiki/latest/$(XMLNAME)
