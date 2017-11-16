@@ -50,4 +50,4 @@ if __name__ == '__main__':
     word2vec.save(outp)
 
     if veco:
-        word2vec.save_word2vec_format(outp + '.model.txt', binary=False)
+        word2vec.wv.save_word2vec_format(outp + '.model.txt', binary=False)
