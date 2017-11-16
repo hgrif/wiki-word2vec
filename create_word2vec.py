@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     # Check and process input arguments.
     if len(sys.argv) < 4:
-        print globals()['__doc__'] % locals()
+        print(globals()['__doc__'] % locals())
         sys.exit(1)
 
     inp, outp, veco = sys.argv[1:4]
@@ -48,6 +48,6 @@ if __name__ == '__main__':
     word2vec = Word2Vec(LineSentence(inp, max_sentence_length=max_length),
                         **params)
     word2vec.save(outp)
-    
+
     if veco:
         word2vec.save_word2vec_format(outp + '.model.txt', binary=False)
