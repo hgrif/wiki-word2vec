@@ -34,7 +34,6 @@ Train a model in Python:
 ```python
 import multiprocessing
 from gensim.corpora.wikicorpus import WikiCorpus
-from gensim.models.word2vec import LineSentence
 from gensim.models.word2vec import Word2Vec
 
 wiki = WikiCorpus('data/sw/swwiki-latest-pages-articles.xml.bz2', 
@@ -78,5 +77,5 @@ mlo
 
 ## Dependencies
 
-* Python
-* gensim: `pip install gensim`
+* Python 3
+* `pip install gensim`

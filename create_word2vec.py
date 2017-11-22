@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s')
     logging.root.setLevel(level=logging.INFO)
-    logger.info("Running %s" % ' '.join(sys.argv))
+    logger.info("Running %s", ' '.join(sys.argv))
 
     # Check and process input arguments.
     if len(sys.argv) < 4:
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     with open(inp, 'r') as f:
         for line in f.readlines():
             max_length = max(max_length, len(line))
-    logger.info("Max article length: {} words.".format(max_length))
+    logger.info("Max article length: %s words.", max_length)
 
     params = {
         'size': 400,
@@ -43,7 +43,7 @@ if __name__ == '__main__':
         'min_count': 10,
         'workers': max(1, multiprocessing.cpu_count() - 1),
         'sample': 1E-5,
-        }
+    }
 
     word2vec = Word2Vec(LineSentence(inp, max_sentence_length=max_length),
                         **params)

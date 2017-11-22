@@ -27,24 +27,22 @@ if __name__ == '__main__':
 
     logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s')
     logging.root.setLevel(level=logging.INFO)
-    logger.info("Running %s" % ' '.join(sys.argv))
+    logger.info("Running %s", ' '.join(sys.argv))
 
     # Check and process input arguments.
     if len(sys.argv) < 3:
         print(globals()['__doc__'] % locals())
         sys.exit(1)
     inp, outp = sys.argv[1:3]
-    space = " "
 
-    i = 0
     # Lemmatization is only available for English.
     # Don't construct a dictionary because we're not using it.
     wiki = WikiCorpus(inp, lemmatize=False, dictionary={})
     with open(outp, 'w') as output:
-        for text in wiki.get_texts():
-            output.write(space.join(text) + "\n")
-            i = i + 1
-            if (i % 10000 == 0):
-                logger.info("Saved " + str(i) + " articles")
+        for i, text in enumerate(wiki.get_texts()):
+            output.write(" ".join(text) + "\n")
+            if i > 0 and i % 10000 == 0:
+                logger.info("Saved %s articles", i)
+            n = i
 
-    logger.info("Finished saving " + str(i) + " articles")
+    logger.info("Finished saving %s articles", n)
