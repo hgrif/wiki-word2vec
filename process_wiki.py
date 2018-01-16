@@ -40,6 +40,8 @@ if __name__ == '__main__':
     wiki = WikiCorpus(inp, lemmatize=False, dictionary={})
     with open(outp, 'w') as output:
         for i, text in enumerate(wiki.get_texts()):
+            # Note: if you're using Python 2, use:
+            # output.write(" ".join(unicode(text)) + "\n")
             output.write(" ".join(text) + "\n")
             if i > 0 and i % 10000 == 0:
                 logger.info("Saved %s articles", i)
